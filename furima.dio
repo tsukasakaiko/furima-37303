@@ -33,7 +33,7 @@
                 <mxCell id="10" value="birth_day" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="2" vertex="1">
                     <mxGeometry y="236" width="200" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="16" style="edgeStyle=none;html=1;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1.015;exitY=0.867;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" target="32" edge="1" source="5">
+                <mxCell id="16" style="edgeStyle=none;html=1;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;entryX=0.006;entryY=0.267;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryPerimeter=0;" parent="1" target="32" edge="1" source="5">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="220" y="39" as="sourcePoint"/>
                         <mxPoint x="409.03999999999996" as="targetPoint"/>
@@ -118,10 +118,10 @@
                         <mxPoint x="410" y="25" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="44" style="edgeStyle=none;html=1;endArrow=ERone;endFill=0;startArrow=ERone;startFill=0;entryX=-0.012;entryY=0.233;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1.004;exitY=0.148;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="20" target="40">
+                <mxCell id="44" style="edgeStyle=none;html=1;endArrow=ERone;endFill=0;startArrow=ERone;startFill=0;exitX=1.004;exitY=0.148;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="20">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="360" y="240" as="sourcePoint"/>
-                        <mxPoint x="380" y="292" as="targetPoint"/>
+                        <mxPoint x="400" y="330" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
             </root>
