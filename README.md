@@ -31,46 +31,64 @@ usersテーブル
 |--------------------|---------------------|---------------------------|
 | nickname           | string              | null: false               |
 | email              | string              | null: false               |
-| password           | string              | null: false               |
+| encrypted_password | string              | null: false               |
 | family_name        | string              | null: false               |
 | farst_name         | string              | null: false               |
 | family_name_kana   | string              | null: false               |
 | farst_name_kana    | string              | null: false               |
 | birth_day          | date                | null: false               |
 
+has_many : item
+
+
+
+
 
 itemsテーブル
 
 | Column             | Type                | Options                   |
 |--------------------|---------------------|---------------------------|
-| user_id            | integer             | null: false,foreign_key: true|
+| user               | integer             | null: false,references_key: true|
 | nickname           | string              | null: false               |
-| category           | string              | null: false               |
-| condition          | string              | null: false               |
-| delivery_charge    | string              | null: false               |
-| shipment_place     | string              | null: false               |
-| estimated_day      | string              | null: false               |
+| category           | integer             | null: false               |
+| condition          | integer             | null: false               |
+| delivery_charge    | integer             | null: false               |
+| shipment_place     | integer             | null: false               |
+| estimated_day      | integer             | null: false               |
+| price              | integer             | null: false               |
+| product            | string              | null: false               |
+
+belongs_to :user
+belongs_to :buyer
+
+
 
 buyerテーブル
 
 | Column             | Type                | Options                   |
 |--------------------|---------------------|---------------------------|
-| user_id            | integer             | null: false,foreign_key: true|
+| user               | integer             | null: false,references_key: true|
 | nickname           | string              | null: false               |
 | category           | string              | null: false               |
-| condition          | string              | null: false               |
-| delivery_charge    | string              | null: false               |
-| shipment_place     | string              | null: false               |
-| estimated_day      | string              | null: false               |
+| family_name        | string              | null: false               |
+| farst_name         | string              | null: false               |
+| family_name_kana   | string              | null: false               |
+| farst_name_kana    | string              | null: false               |
+
+has_one :items
+belongs_to :sending_address
+
+
 
 sending_addressテーブル
 
 | Column             | Type                | Options                   |
 |--------------------|---------------------|---------------------------|
-| user_id            | integer             | null: false,foreign_key: true|
-| post_code          | string              | null: false               |
+| post_code          | integer             | null: false               |
 | prefecture         | string              | null: false               |
 | city               | string              | null: false               |
 | address            | string              | null: false               |
-| building_name      | string              | null: false               |
+| building_name      | string              |                           |
 | phone              | integer             | null: false               |
+
+has_one :buyer
