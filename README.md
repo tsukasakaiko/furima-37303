@@ -39,7 +39,7 @@ usersテーブル
 | birth_day          | date                | null: false               |
 
 has_many : items
-has_many : buyers
+has_one : buyers
 
 
 
@@ -57,7 +57,7 @@ itemsテーブル
 | estimated_day_id   | integer             | null: false               |
 | price              | integer             | null: false               |
 | product            | text                | null: false               |
-| name               | string              | null: false,              |
+| name               | string              | null: false               |
 
 belongs_to :user
 belongs_to :buyer
@@ -88,6 +88,6 @@ sending_addressesテーブル
 | city               | string              | null: false               |
 | address            | string              | null: false               |
 | building_name      | string              |                           |
-| phone              | text                | null: false               |
+| phone              | string              | null: false               |
 
-has_one :buyer
+belongs_to :buyer
