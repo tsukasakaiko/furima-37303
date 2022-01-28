@@ -39,7 +39,7 @@ usersテーブル
 | birth_day          | date                | null: false               |
 
 has_many : items
-has_one : buyers
+has_many : buyers
 
 
 
@@ -60,7 +60,7 @@ itemsテーブル
 | name               | string              | null: false               |
 
 belongs_to :user
-belongs_to :buyer
+has_one :buyer
 
 
 
