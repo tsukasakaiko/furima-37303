@@ -56,7 +56,8 @@ itemsテーブル
 | prefecture_id      | integer             | null: false               |
 | estimated_day_id   | integer             | null: false               |
 | price              | integer             | null: false               |
-| product            | string              | null: false               |
+| product            | text                | null: false               |
+| name               | string              | null: false,              |
 
 belongs_to :user
 belongs_to :buyer
@@ -82,11 +83,11 @@ sending_addressesテーブル
 | Column             | Type                | Options                   |
 |--------------------|---------------------|---------------------------|
 | buyer              | references          | null: false, foreign_key: true |
-| post_code          | integer             | null: false               |
-| prefecture         | integer             | null: false               |
+| post_code          | string              | null: false               |
+| prefecture_id      | integer             | null: false               |
 | city               | string              | null: false               |
 | address            | string              | null: false               |
 | building_name      | string              |                           |
-| phone              | string              | null: false               |
+| phone              | text                | null: false               |
 
 has_one :buyer
