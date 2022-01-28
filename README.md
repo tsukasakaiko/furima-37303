@@ -29,8 +29,8 @@ usersテーブル
 
 | Column             | Type                | Options                   |
 |--------------------|---------------------|---------------------------|
-| nickname           | string              | null: false               |
-| email              | string              | null: false               |
+| nickname           | string              | null: false,              |
+| email              | string              | null: false,unique: true  |
 | encrypted_password | string              | null: false               |
 | family_name        | string              | null: false               |
 | farst_name         | string              | null: false               |
@@ -38,7 +38,8 @@ usersテーブル
 | farst_name_kana    | string              | null: false               |
 | birth_day          | date                | null: false               |
 
-has_many : item
+has_many : items
+has_many : buyers
 
 
 
@@ -48,13 +49,12 @@ itemsテーブル
 
 | Column             | Type                | Options                   |
 |--------------------|---------------------|---------------------------|
-| user               | integer             | null: false,references_key: true|
-| nickname           | string              | null: false               |
-| category           | integer             | null: false               |
-| condition          | integer             | null: false               |
-| delivery_charge    | integer             | null: false               |
-| shipment_place     | integer             | null: false               |
-| estimated_day      | integer             | null: false               |
+| user               | references          | null: false, foreign_key: true |
+| category_id        | integer             | null: false               |
+| condition_id       | integer             | null: false               |
+| delivery_charge_id | integer             | null: false               |
+| prefecture_id      | integer             | null: false               |
+| estimated_day_id   | integer             | null: false               |
 | price              | integer             | null: false               |
 | product            | string              | null: false               |
 
@@ -63,32 +63,30 @@ belongs_to :buyer
 
 
 
-buyerテーブル
+buyersテーブル
 
 | Column             | Type                | Options                   |
 |--------------------|---------------------|---------------------------|
-| user               | integer             | null: false,references_key: true|
-| nickname           | string              | null: false               |
-| category           | string              | null: false               |
-| family_name        | string              | null: false               |
-| farst_name         | string              | null: false               |
-| family_name_kana   | string              | null: false               |
-| farst_name_kana    | string              | null: false               |
+| user               | references          | null: false, foreign_key: true |
+| item               | references          | null: false, foreign_key: true |
 
-has_one :items
-belongs_to :sending_address
+
+belongs_to :user
+belongs_to :item
+has_one :sending_address
 
 
 
-sending_addressテーブル
+sending_addressesテーブル
 
 | Column             | Type                | Options                   |
 |--------------------|---------------------|---------------------------|
+| buyer              | references          | null: false, foreign_key: true |
 | post_code          | integer             | null: false               |
-| prefecture         | string              | null: false               |
+| prefecture         | integer             | null: false               |
 | city               | string              | null: false               |
 | address            | string              | null: false               |
 | building_name      | string              |                           |
-| phone              | integer             | null: false               |
+| phone              | string              | null: false               |
 
 has_one :buyer
