@@ -56,8 +56,8 @@ itemsテーブル
 | prefecture_id      | integer             | null: false               |
 | estimated_day_id   | integer             | null: false               |
 | price              | integer             | null: false               |
-| product            | text                | null: false               |
-| name               | string              | null: false               |
+| item-info          | text                | null: false               |
+| item-name          | string              | null: false               |
 
 belongs_to :user
 has_one :buyer
