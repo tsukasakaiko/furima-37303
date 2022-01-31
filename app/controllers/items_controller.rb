@@ -5,9 +5,11 @@ class ItemsController < ApplicationController
   end
 
   def new
+  end
 
-
-end
+  def image_params
+    params.imerge(user_id: current_user.id)
+  end
 
 
 end
