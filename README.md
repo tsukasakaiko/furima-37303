@@ -29,7 +29,7 @@ usersテーブル
 
 | Column             | Type                | Options                   |
 |--------------------|---------------------|---------------------------|
-| nickname           | string              | null: false,              |
+| nickname           | string              | null: false              |
 | email              | string              | null: false, unique: true |
 | encrypted_password | string              | null: false               |
 | family_name        | string              | null: false               |
@@ -56,8 +56,8 @@ itemsテーブル
 | prefecture_id      | integer             | null: false               |
 | estimated_day_id   | integer             | null: false               |
 | price              | integer             | null: false               |
-| product            | text                | null: false               |
-| name               | string              | null: false               |
+| item_info          | text                | null: false               |
+| item_name          | string              | null: false               |
 
 belongs_to :user
 has_one :buyer
