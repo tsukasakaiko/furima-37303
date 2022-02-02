@@ -1,0 +1,2 @@
+class ItemAddress < ApplicationRecord
+end
