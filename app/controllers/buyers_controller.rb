@@ -4,7 +4,7 @@ class BuyersController < ApplicationController
 
   def index
     if @item.user_id != current_user.id && @item.buyer.blank?
-      @item_address = SendingAddress.new
+      @order = Order.new
     else
       redirect_to root_path
     end
@@ -12,10 +12,10 @@ class BuyersController < ApplicationController
 
 
   def create
-    @sending_address = SendingAddress.new(item_address_params)
-    if @sending_address.valid?
+    @order = Order.new(order_params)
+    if @order.valid?
       pay_item
-      @sending_address.save
+      @order.save
       redirect_to root_path
     else
       render :index
@@ -27,8 +27,8 @@ class BuyersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-  def item_address_params
-    params.require(:item_address).permit(:post_code, :prefecture_id, :city, :address, :building_name, :phone).merge(
+  def order_params
+    params.require(:order).permit(:post_code, :prefecture_id, :city, :address, :building_name, :phone).merge(
       user_id: current_user.id, item_id: params[:item_id], token: params[:token]
     )
   end
