@@ -1,12 +1,12 @@
 class Order 
   include ActiveModel::Model
-  attr_accessor :user, :item, :token, :post_code, :prefecture_id, :city, :address, :building_name, :phone
+  attr_accessor :user_id, :item_id, :token, :post_code, :prefecture_id, :city, :address, :building_name, :phone
 
   # ここにバリデーションの処理を書く
   with_options presence: true do
-    validates :user
-    validates :item
-    validates :token
+    validates :user_id
+    validates :item_id
+    
     validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
     validates :city
     validates :address

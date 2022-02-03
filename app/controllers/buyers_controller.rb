@@ -3,7 +3,7 @@ class BuyersController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-    if @item.user != current_user.id && @item.buyer.blank?
+    if @item.user.id != current_user.id && @item.buyer.blank?
       @order = Order.new
     else
       redirect_to root_path
@@ -12,10 +12,8 @@ class BuyersController < ApplicationController
 
 
   def create
-    binding.pry
     @order = Order.new(order_params)
     if @order.valid?
-      pay_item
       @order.save
       redirect_to root_path
     else
@@ -25,12 +23,12 @@ class BuyersController < ApplicationController
 
   private
   def set_item
-    @item = Item.find(params[:item])
+    @item = Item.find(params[:item_id])
   end
 
   def order_params
     params.require(:order).permit(:post_code, :prefecture_id, :city, :address, :building_name, :phone).merge(
-      user_id: current_user.id, item_id: params[:item], token: params[:token]
+      user_id: current_user.id, item_id: params[:item_id]
     )
   end
 

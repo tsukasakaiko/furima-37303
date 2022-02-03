@@ -1,8 +1,5 @@
 FactoryBot.define do
   factory :order do
-    association :user
-    association :item
-    token               { 'tok_abcdefghijk00000000000000000' }
     post_code           { '123-4567' }
     prefecture_id       { '5' }
     city                { '中央区' }
@@ -11,4 +8,5 @@ FactoryBot.define do
     phone               { '09011112222' }
     
   end
+
 end

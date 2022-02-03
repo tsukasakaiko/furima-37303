@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Order, type: :model do
   before do
-    @order = FactoryBot.build(:order)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @order = FactoryBot.build(:order, user_id: user.id, item_id: item.id)
+    sleep 0.1 
   end
 
   describe '商品購入情報の保存' do
@@ -32,13 +35,13 @@ RSpec.describe Order, type: :model do
       it 'prefecture_idが1では登録できない' do
         @order.prefecture_id = '1'
         @order.valid?
-        expect(@order.errors.full_messages).to include('Prefecture can't be blank')
+        expect(@order.errors.full_messages).to include("Prefecture can't be blank")
       end
 
       it 'cityが空では登録できない' do
-        @order.city = ' '
+        @order.city = ""
         @order.valid?
-        expect(@order.errors.full_messages).to include('city can't be blank')
+        expect(@order.errors.full_messages).to include("City can't be blank")
       end
 
       it 'addressが空では登録できない' do
@@ -62,32 +65,28 @@ RSpec.describe Order, type: :model do
       it 'phoneが9桁以下ではでは登録できない' do
         @order.phone = '090123456'
         @order.valid?
-        expect(@order.errors.full_messages).to include('Price must be less than or equal to 9999999')
+        expect(@order.errors.full_messages).to include("Phone is invalid")
       end
 
       it 'phoneが12桁以上では登録できない' do
         @order.phone = '090123456789'
         @order.valid?
-        expect(@order.errors.full_messages).to include('Price is not a number')
-      end
-
-      it 'tokenが空だと登録できないこと' do
-        @order.token = " "
-        @order.valid?
-        expect(@order.errors.full_messages).to include("Image can't be blank")
+        expect(@order.errors.full_messages).to include('Phone is invalid')
       end
 
       it 'userと紐づいていないと登録できない' do
-        @order.user = nil
-        @@order.valid?
-        expect(@order.errors.full_messages).to include('User must exist')
+        @order.user_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("User can't be blank")
       end
 
         it 'itemと紐づいていないと登録できない' do
-          @order.item = nil
+          @order.item_id = nil
           @order.valid?
-          expect(@order.errors.full_messages).to include('User must exist')
+          expect(@order.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
 end
+
+ 
