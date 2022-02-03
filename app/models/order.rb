@@ -16,8 +16,8 @@ class Order
 
   def save
     buyer = Buyer.create(user_id: user_id, item_id: item_id)
-    sending_address.create(post_code: post_code, prefecture_id: prefecture_id, city: city,
-      address: address, building_name: building_name, phone: phone, buyer_item_id: buyer_item.id)
+    SendingAddress.create(post_code: post_code, prefecture_id: prefecture_id, city: city,
+      address: address, building_name: building_name, phone: phone, buyer_id: buyer.id)
 
 
     # 各テーブルにデータを保存する処理を書く

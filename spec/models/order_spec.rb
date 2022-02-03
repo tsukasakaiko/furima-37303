@@ -74,6 +74,12 @@ RSpec.describe Order, type: :model do
         expect(@order.errors.full_messages).to include('Phone is invalid')
       end
 
+      it 'tokenが空だと保存できないこと' do
+        @order.token = ''
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Token can't be blank")
+      end
+
       it 'userと紐づいていないと登録できない' do
         @order.user_id = nil
         @order.valid?
