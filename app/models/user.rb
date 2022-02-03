@@ -19,8 +19,8 @@ class User < ApplicationRecord
   end
 
   with_options presence: true do
-  validates :birth_day, presence: true
-  validates :nickname, presence: true
+    validates :birth_day, presence: true
+    validates :nickname, presence: true
   end
 
   has_many :items

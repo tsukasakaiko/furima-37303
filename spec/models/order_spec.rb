@@ -5,7 +5,7 @@ RSpec.describe Order, type: :model do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
     @order = FactoryBot.build(:order, user_id: user.id, item_id: item.id)
-    sleep 0.1 
+    sleep 0.1
   end
 
   describe '商品購入情報の保存' do
@@ -14,7 +14,7 @@ RSpec.describe Order, type: :model do
         expect(@order).to be_valid
       end
       it 'building_nameは空でも登録出来る' do
-        @order.building_name = ""
+        @order.building_name = ''
         expect(@order).to be_valid
       end
     end
@@ -39,7 +39,7 @@ RSpec.describe Order, type: :model do
       end
 
       it 'cityが空では登録できない' do
-        @order.city = ""
+        @order.city = ''
         @order.valid?
         expect(@order.errors.full_messages).to include("City can't be blank")
       end
@@ -57,7 +57,7 @@ RSpec.describe Order, type: :model do
       end
 
       it 'phoneにハイフンを含むと登録できない' do
-        @order.phone = "090-1234-5678"
+        @order.phone = '090-1234-5678'
         @order.valid?
         expect(@order.errors.full_messages).to include('Phone is invalid')
       end
@@ -65,7 +65,7 @@ RSpec.describe Order, type: :model do
       it 'phoneが9桁以下ではでは登録できない' do
         @order.phone = '090123456'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phone is invalid")
+        expect(@order.errors.full_messages).to include('Phone is invalid')
       end
 
       it 'phoneが12桁以上では登録できない' do
@@ -86,13 +86,11 @@ RSpec.describe Order, type: :model do
         expect(@order.errors.full_messages).to include("User can't be blank")
       end
 
-        it 'itemと紐づいていないと登録できない' do
-          @order.item_id = nil
-          @order.valid?
-          expect(@order.errors.full_messages).to include("Item can't be blank")
+      it 'itemと紐づいていないと登録できない' do
+        @order.item_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
 end
-
- 
