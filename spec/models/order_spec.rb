@@ -26,6 +26,12 @@ RSpec.describe Order, type: :model do
         expect(@order.errors.full_messages).to include("Post code can't be blank")
       end
 
+      it 'post_codeは全角で登録できない' do
+        @order.post_code = 'ああ'
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+      end
+
       it 'post_codeが半角のハイフンを含んだ正しい形式でないと登録できない' do
         @order.post_code = '1120011'
         @order.valid?
@@ -33,7 +39,7 @@ RSpec.describe Order, type: :model do
       end
 
       it 'prefecture_idが1では登録できない' do
-        @order.prefecture_id = '1'
+        @order.prefecture_id = 1
         @order.valid?
         expect(@order.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -54,6 +60,12 @@ RSpec.describe Order, type: :model do
         @order.phone = ''
         @order.valid?
         expect(@order.errors.full_messages).to include("Phone can't be blank")
+      end
+
+      it 'phoneは全角では登録できない' do
+        @order.phone = 'ああ'
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Phone is invalid")
       end
 
       it 'phoneにハイフンを含むと登録できない' do
